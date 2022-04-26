@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>counter</title>
+  </head>
+  <body>
+    <h1 id="count"></h1>
+    <button id="inc">Increase</button>
+    <button id="dec">Decrease</button>
+  </body>
+</html>
+<script>
+  inc = document.getElementById("inc");
+  dec = document.getElementById("dec");
+  countHeading = document.getElementById("count");
+
+  inc.addEventListener("click", myFunc1);
+  dec.addEventListener("click", myFunc2);
+
+  if (localStorage.getItem("count") == null) {
+    count = 0;
+  } else {
+    count = localStorage.getItem("count");
+  }
+
+  countHeading.innerText = count;
+  console.log(count);
+
+  function myFunc1() {
+    count++;
+    localStorage.setItem("count", count);
+    countHeading.innerText = count;
+  }
+
+  function myFunc2() {
+    count--;
+    localStorage.setItem("count", count);
+    countHeading.innerText = count;
+  }
+</script>
