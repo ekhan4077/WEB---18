@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up</title>
+  </head>
+  <body>
+    <form id="form">
+      <input type="email" placeholder="Enter Email" id="email" />
+      <input type="number" placeholder="Enter Mobile Number" id="mobile" />
+      <input type="password" placeholder="Enter Password" id="pass" />
+      <input type="submit" />
+    </form>
+    <br />
+    <a href="signup.html">Sign up</a>
+  </body>
+</html>
+<script>
+  form = document.getElementById("form");
+  form.addEventListener("submit", myFunc);
+
+  function myFunc(e) {
+    e.preventDefault();
+    email = document.getElementById("email").value;
+    mobile = document.getElementById("mobile").value;
+    pass = document.getElementById("pass").value;
+
+    users = JSON.parse(localStorage.getItem("users"));
+    // console.log(users);
+    validator = false;
+    for (var i in users) {
+      if (
+        users[i].email == email &&
+        users[i].mobile == mobile &&
+        users[i].password == pass
+      ) {
+        validator = true;
+      }
+      //   console.log(users[key].email);
+    }
+    if (validator) {
+      alert("Logged in successfully");
+    } else {
+      alert("Invalid credentials");
+    }
+  }
+</script>
