@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backend</title>
+    <link rel="stylesheet" href="common.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="btn1"><a href="backend.html">Backend</a></div>
+      <div class="btn1"><a href="front-end.html">Frontend</a></div>
+    </div>
+
+    <form id="form">
+      <input type="text" placeholder="Name" id="name" /><br />
+      <input type="text" placeholder="Image URL" id="avatar" /><br />
+      <input type="text" placeholder="Company Logo" id="comp" /><br />
+      <input type="text" placeholder="Role" id="desg" /><br />
+      <input type="submit" id="submit" />
+    </form>
+  </body>
+</html>
+<script>
+  form = document.querySelector("form");
+
+  form.addEventListener("submit", myFunc);
+
+  if (JSON.parse(localStorage.getItem("data")) === null) {
+    var arr = [];
+  } else {
+    arr = JSON.parse(localStorage.getItem("data"));
+  }
+  //   console.log(arr);
+
+  function myFunc(e) {
+    e.preventDefault();
+    obj = {};
+    obj["name"] = document.getElementById("name").value;
+    obj["avatar"] = document.getElementById("avatar").value;
+    obj["comp"] = document.getElementById("comp").value;
+    obj["desg"] = document.getElementById("desg").value;
+    arr.push(obj);
+    // console.log(obj);
+    // console.log(arr);
+    localStorage.setItem("data", JSON.stringify(arr));
+  }
+</script>
