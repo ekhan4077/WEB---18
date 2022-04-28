@@ -16,6 +16,22 @@
     </div>
 
     <main>
+      <select id="sort">
+        <option value="def">Sort by name</option>
+        <option value="asc">Ascending</option>
+        <option value="dsc">Descending</option>
+      </select>
+      <select id="sort_sal">
+        <option value="def">Sort by salary</option>
+        <option value="asc">Ascending</option>
+        <option value="dsc">Descending</option>
+      </select>
+      <select id="filter">
+        <option value="def">Role</option>
+        <option value="FSD">FSD</option>
+        <option value="Backend">Backend</option>
+        <option value="Frontend">Frontend</option>
+      </select>
       <table>
         <thead>
           <tr>
@@ -33,13 +49,87 @@
     </main>
   </body>
   <script>
-    body = document.getElementById("body");
-
     applicants = JSON.parse(localStorage.getItem("jobList")) || [];
+    body = document.getElementById("body");
+    sort_name = document.getElementById("sort");
+    sort_sal = document.getElementById("sort_sal");
+    filter = document.getElementById("filter");
 
     displayData(applicants);
 
+    sort_name.addEventListener("change", mySort);
+    sort_sal.addEventListener("change", mySortSal);
+    filter.addEventListener("change", filterRole);
+
+    function mySort() {
+      sortValue = document.getElementById("sort").value;
+
+      if (sortValue == "asc") {
+        applicants.sort((a, b) => {
+          x = a.name.toLowerCase();
+          y = b.name.toLowerCase();
+
+          if (x > y) {
+            return 1;
+          } else if (x < y) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
+        // console.log(applicants);
+        displayData(applicants);
+      } else if (sortValue == "dsc") {
+        applicants.sort((a, b) => {
+          x = a.name.toLowerCase();
+          y = b.name.toLowerCase();
+
+          if (x > y) {
+            return -1;
+          } else if (x < y) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        // console.log(applicants);
+        displayData(applicants);
+      }
+    }
+
+    function mySortSal() {
+      sortValue = document.getElementById("sort_sal").value;
+
+      if (sortValue == "asc") {
+        applicants.sort((a, b) => {
+          x = a.salary;
+          y = b.salary;
+          return x - y;
+        });
+        // console.log(applicants);
+        displayData(applicants);
+      } else if (sortValue == "dsc") {
+        applicants.sort((a, b) => {
+          x = a.salary;
+          y = b.salary;
+          return y - x;
+        });
+        // console.log(applicants);
+        displayData(applicants);
+      }
+    }
+
+    function filterRole() {
+      var selected = document.getElementById("filter").value;
+      filteredArr = applicants.filter((el) => {
+        return el.role === selected;
+      });
+      displayData(filteredArr);
+      console.log(filteredArr);
+    }
+
     function displayData(data) {
+      body.innerHTML = "";
       data.forEach(function (el, i) {
         tr = document.createElement("tr");
 
