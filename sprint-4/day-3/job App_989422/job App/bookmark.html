@@ -31,7 +31,7 @@
   </body>
   <script>
     body = document.getElementById("body");
-    bookmark = JSON.parse(localStorage.getItem("bookmarked"));
+    bookmark = JSON.parse(localStorage.getItem("bookmarks"));
 
     displayBookmark(bookmark);
 
@@ -63,7 +63,7 @@
 
     function deleteEntry(el, i) {
       bookmark.splice(i, 1);
-      localStorage.setItem("bookmarked", JSON.stringify(bookmark));
+      localStorage.setItem("bookmarks", JSON.stringify(bookmark));
       window.location.reload();
     }
   </script>

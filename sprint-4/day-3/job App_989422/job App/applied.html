@@ -35,7 +35,7 @@
   <script>
     body = document.getElementById("body");
 
-    applicants = JSON.parse(localStorage.getItem("applicants_data")) || [];
+    applicants = JSON.parse(localStorage.getItem("jobList")) || [];
 
     displayData(applicants);
 
@@ -65,10 +65,10 @@
       });
     }
 
-    bookmark = JSON.parse(localStorage.getItem("bookmarked")) || [];
+    bookmark = JSON.parse(localStorage.getItem("bookmarks")) || [];
     function addToBookmark(el) {
       bookmark.push(el);
-      localStorage.setItem("bookmarked", JSON.stringify(bookmark));
+      localStorage.setItem("bookmarks", JSON.stringify(bookmark));
     }
   </script>
 </html>

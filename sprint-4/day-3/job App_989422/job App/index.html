@@ -36,7 +36,7 @@
 
     form.addEventListener("submit", myFunc1);
 
-    var applicants = JSON.parse(localStorage.getItem("applicants_data")) || [];
+    var applicants = JSON.parse(localStorage.getItem("jobList")) || [];
 
     function myFunc1(e) {
       e.preventDefault(e);
@@ -54,7 +54,7 @@
       applicant["salary"] = salary;
 
       applicants.push(applicant);
-      localStorage.setItem("applicants_data", JSON.stringify(applicants));
+      localStorage.setItem("jobList", JSON.stringify(applicants));
       window.location.reload();
     }
   </script>
