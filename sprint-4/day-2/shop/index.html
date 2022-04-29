@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      #form {
+        width: 50%;
+        margin: 20px auto;
+      }
+      #form input {
+        margin-bottom: 12px;
+        font-size: 15px;
+        border-radius: 5px;
+        border-color: antiquewhite;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <h3 class="logo"><a href="index.html">Zara</a></h3>
+      <div class="flex">
+        <h3><a href="#">Men</a></h3>
+        <h3><a href="#">Women</a></h3>
+        <h3><a href="login.html">Login</a></h3>
+        <h3><a href="index.html">Signup</a></h3>
+      </div>
+    </nav>
+    <form id="form">
+      <input type="email" placeholder="Enter Email" id="email" /><br />
+      <input
+        type="number"
+        placeholder="Enter Mobile Number"
+        id="mobile"
+      /><br />
+      <input type="password" placeholder="Enter Password" id="pass1" /><br />
+      <input type="password" placeholder="Confirm Password" id="pass2" /><br />
+      <input type="submit" />
+    </form>
+    <br />
+  </body>
+</html>
+<script>
+  form = document.getElementById("form");
+  form.addEventListener("submit", myFunc);
+
+  users = JSON.parse(localStorage.getItem("users")) || [];
+
+  function myFunc(e) {
+    e.preventDefault();
+
+    email = document.getElementById("email").value;
+    mobile = document.getElementById("mobile").value;
+    pass1 = document.getElementById("pass1").value;
+    pass2 = document.getElementById("pass2").value;
+
+    user = {};
+    if (pass1 !== pass2) {
+      alert("Passwords don't match");
+    } else {
+      user["email"] = email;
+      user["mobile"] = mobile;
+      user["password"] = pass1;
+
+      users.push(user);
+      localStorage.setItem("users", JSON.stringify(users));
+      window.location.reload();
+    }
+  }
+</script>
